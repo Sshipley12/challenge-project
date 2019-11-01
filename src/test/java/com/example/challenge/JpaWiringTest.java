@@ -3,6 +3,7 @@ package com.example.challenge;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,30 +27,25 @@ public class JpaWiringTest {
 	@Autowired
 	private SongRepository songRepo;
 	
-	private Artist blake;
-	private Album blakesAlbum;
-	private Song blakesSong;
+	private Artist testArtist;
+	private Album testAlbum;
 	
-	@Before 
-	public void setup() {
-		blake = new Artist("blake","blakes album","blakes song");
-		artistRepo.save(blake);
-		blakesAlbum = new Album(blake, "blakes song")
-		albumRepo.save(blakesSong);
-		flushAndClearEntityManager();
-	}
+
     
 	@Test
 	public void artistShouldHaveAlbums() throws Exception {
 		Artist testArtist = new Artist("Test Name");
 		Album testAlbum = new Album("Test Name", testArtist);
-		testArtist = artistRepo.save(testArtist);
-		testAlbum = albumRepo.save(testAlbum);
-		entityManager.flush();
-		entityManager.clear();
-		Artist retrievedArtist = artistRepo.findById(testArtist.getId()).get();
-		assertThat(retrievedArtist.getAlbums(), contains(testAlbum));
-		
+  		testArtist = artistRepo.save(testArtist);
+	    testAlbum = albumRepo.save(testAlbum);
+        entityManager.flush();	
+	    entityManager.clear();
+	   Artist retrievedArtist = artistRepo.findById(testArtist.getId()).get();
+	  assertThat(retrievedArtist.getAlbums(), contains(testAlbum));	}
+	
+	  @Test
+	  public void shouldStartJPATestFrameWork() {
+
 	}
 	
 

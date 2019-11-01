@@ -1,5 +1,7 @@
 package com.example.challenge;
 
-public interface SongRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface SongRepository extends CrudRepository<Album, Long> {
 
 }

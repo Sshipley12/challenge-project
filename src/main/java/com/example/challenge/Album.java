@@ -18,14 +18,17 @@ public class Album {
 	
 	@ManyToOne
 	@JsonIgnore
-	private String name;
 	private Artist artist;
+	
+	
+	
+	private String name;
+
 	
 	
 	@OneToMany(mappedBy="album")
 	private Collection<Song> songs;
 	public Album(String name, Artist artist) {
-		this.name = name;
 		this.artist = artist;
 	
 	}
