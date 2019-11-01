@@ -1,0 +1,12 @@
+
+*
+
+body {
+background-color:red;
+
+}
+img {
+    display: flex;
+    flex-direction: inherit;
+}
+
