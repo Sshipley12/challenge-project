@@ -1,4 +1,4 @@
-package com.example.challenge;
+package com.example.challenge.models;
 
 import java.util.Collection;
 
@@ -10,45 +10,41 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 public class Album {
 	@Id
-	@GeneratedValue Long id;
-	
+	@GeneratedValue
+	Long id;
+
 	@ManyToOne
 	@JsonIgnore
 	private Artist artist;
-	
-	
-	
+
 	private String name;
 
-	
-	
-	@OneToMany(mappedBy="album")
+	@OneToMany(mappedBy = "album")
 	private Collection<Song> songs;
+
 	public Album(String name, Artist artist) {
 		this.artist = artist;
-	
+
 	}
+
 	public Album(String name) {
 		this.name = name;
 	}
-	
-	
+
 	@SuppressWarnings("unused")
 	private Album() {
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public Collection<Song> getSongs() {
 		return songs;
 	}
-
 
 	public String getName() {
 		return name;
@@ -57,14 +53,17 @@ public class Album {
 	public Artist getArtist() {
 		return artist;
 	}
+
 	public void addSong(Song song) {
 		if (doesNotContainSong(song)) {
 			this.songs.add(song);
 		}
 	}
+
 	private boolean doesNotContainSong(Song song) {
 		return false;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,6 +74,7 @@ public class Album {
 		result = prime * result + ((songs == null) ? 0 : songs.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -107,5 +107,4 @@ public class Album {
 		return true;
 	}
 
-	
 }
