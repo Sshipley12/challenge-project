@@ -1,4 +1,4 @@
-package com.example.challenge;
+package com.example.challenge.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,34 +13,40 @@ public class Song {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@ManyToOne
-	@JsonIgnore 
+	@JsonIgnore
 	private Album album;
-	
+
 	private String title;
-	
+
 	public Song(Album album, String title) {
 		this.album = album;
 		this.title = title;
 	}
+
 	public Song(String title) {
 		this.title = title;
-		
+
 	}
+
 	@SuppressWarnings("unused")
 	private Song() {
-		
+
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public Album getAlbum() {
 		return album;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,6 +56,7 @@ public class Song {
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

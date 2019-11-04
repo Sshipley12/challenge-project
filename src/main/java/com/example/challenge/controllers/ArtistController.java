@@ -1,4 +1,4 @@
-package com.example.challenge;
+package com.example.challenge.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.challenge.models.Artist;
+import com.example.challenge.repository.ArtistRepository;
+
 @RestController
 @RequestMapping("/api")
-
 
 public class ArtistController {
 
@@ -23,22 +25,17 @@ public class ArtistController {
 	public Iterable<Artist> findAllArtists() {
 		return artistRepo.findAll();
 	}
-	
+
 	@GetMapping("/artists/{id}")
 	@CrossOrigin
 	public Artist findOneArtist(@PathVariable Long id) {
 		return artistRepo.findById(id).get();
 	}
-	
+
 	@PostMapping("/artists")
 	public Iterable<Artist> postOneArtist(@RequestBody Artist artist) {
 		artistRepo.save(artist);
 		return artistRepo.findAll();
 	}
 
-	
 }
-
-
-
-

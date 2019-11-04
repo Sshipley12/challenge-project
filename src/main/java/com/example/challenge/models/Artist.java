@@ -1,4 +1,4 @@
-package com.example.challenge;
+package com.example.challenge.models;
 
 import java.util.Collection;
 import java.util.ArrayList;
@@ -8,33 +8,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class Artist {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String name;
 
-	
 	@OneToMany(mappedBy = "artist")
 	private Collection<Album> albums;
-	
-	
+
 	public Artist(String name) {
 		this.name = name;
 		this.albums = new ArrayList<Album>();
 	}
+
 	@SuppressWarnings("unused")
 	private Artist() {
-		
+
 	}
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +41,8 @@ public class Artist {
 	public Collection<Album> getAlbums() {
 		return albums;
 	}
-    @Override
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -51,6 +51,7 @@ public class Artist {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,6 +78,5 @@ public class Artist {
 			return false;
 		return true;
 	}
-
 
 }
